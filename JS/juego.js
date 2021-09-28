@@ -11,7 +11,7 @@ var puerta = '#3a1700';
 var tierra = '#c6892f';
 var llave = '#c6bc00';
 
-
+var sprite;
 var protagonista; 
 
 var enemigo= [];
@@ -166,9 +166,14 @@ var jugador = function(){
 
 
     this.dibuja = function(){
-        
         ctx.drawImage(tileMap,32,32,32,32,this.x*altoF,this.y*altoF,anchoF,altoF);
+              
     }
+
+    
+        
+        
+    
 
     this.colisionEnemigo = function(x,y){
         if(this.x == x && this.y == y){
@@ -247,7 +252,7 @@ var jugador = function(){
         }
 
     }
-}
+ }
 
 
 
@@ -258,7 +263,7 @@ function inicializa(){
     ctx = canvas.getContext('2d');
 
     tileMap = new Image();
-    tileMap.src = 'img/tilemap.jpg'
+    tileMap.src = 'img/tilemap.png'
 
 
     //CREAMOS AL JUGADOR
