@@ -6,27 +6,25 @@
     <title>HTML canvas Animacion</title>
 </head>
 <body>
+    
     <canvas id="canvas"></canvas>
 
-    <button onclick='moveLeft()'>Left</button>
-    <button onclick='moveRight()'>Right</button>
 
     <script>
        
-       var canwidth = 650;
+       var canwidth = 650 ;
        var canHeight = 300;
 
 
        var x = 0;
        var y = 0;
        
-       var left = false;
+       
 
-       var trackLeft = 1;
-       var trackRigtht = 0; 
+       
        var srcX;
        var srcY;
-
+        //inicio de animación
        var sheetWidth = 864;
        var sheeHeight = 280;
 
@@ -46,29 +44,18 @@
         var canvas = document.getElementById('canvas');
         canvas.width = canwidth;
         canvas.height = canHeight;
-
-        var ctx = canvas.getContext('2d');
-
-        function moveRight(){
-            left = false;
-        }
-
-        function moveLeft(){
-            left = true;
-        }
-
+        var ctx = canvas.getContext('2d');        
+    
+ 
 
        function updateFrame(){
-        ctx.clearRect(x,y, width,height);
         currentFrame= ++currentFrame % cols;
-        srcX = currentFrame * width;        
-        if(left)
-        srcY = trackLeft * height;
-        else {
-         x+=5;    
-         srcY = trackRigtht * height;
+        srcX = currentFrame * width;       
+        srcY = 0;   
+        ctx.clearRect(x,y, width,height);
+       
         }
-       }
+       
 
        function drawImage(){
             updateFrame();
