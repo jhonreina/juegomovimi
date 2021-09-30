@@ -6,7 +6,7 @@ var anchoF = 50;
 var altoF = 50;
 
 
-
+var puntuacion = 100;
 var protagonista; 
 
 var enemigo= [];
@@ -15,23 +15,23 @@ var tileMap;
 
 var escenario = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+    [0,2,2,2,2,4,2,2,2,2,2,2,2,4,2,2,2,2,4,0],
     [0,2,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0],
     [0,2,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+    [0,2,2,4,2,2,2,2,2,2,2,2,2,2,4,2,2,2,2,0],
     [0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,2,0],
     [0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,2,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0], 
+    [0,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,0],
+    [0,2,2,2,2,2,4,2,2,2,2,4,2,2,2,2,2,2,2,0], 
     [0,0,0,2,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0],
-    [0,0,0,2,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0],
+    [0,0,0,4,0,0,0,0,0,4,0,0,0,0,4,0,0,0,0,0],
     [0,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,2,0],
     [0,2,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0],
-    [0,2,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+    [0,4,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0,4,2,0],
+    [0,2,2,2,2,2,4,2,2,2,2,2,4,2,2,2,2,2,2,0],
     [0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,2,0],
     [0,2,2,0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,2,0],
-    [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+    [0,2,2,2,4,2,2,2,2,2,2,4,2,2,2,2,4,2,2,0],
     [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
     [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -99,14 +99,7 @@ var malo = function(x,y){
         ctx.drawImage(tileMap,0,32,32,32,this.x*altoF,this.y*altoF,anchoF,altoF);
     }
 
-    this.compruebaColision = function(x,y){
-        var colisiona = false;
-        if(escenario[y][x]==0){
-            colisiona = true;
-        }
-        return colisiona;
-
-    }
+  
 
     this.mueve = function(){
 
@@ -162,36 +155,19 @@ var malo = function(x,y){
   }
 }
    //OBJETO JUGADOR 
-   var  jugador = function(x,y){
-    this.x = x;
-    this.y = y;
+   var jugador = function(){
+    this.x = 1;
+    this.y = 1;
+    this.color = '#820c01';
+    this.llave = false;
 
-
-    this.retraso = 10;
-    this.contador = 0;
-    this.fotograma = 0; //0-3
-
-    this.cambiaFotograma = function(){
-        if(this.fotograma < 3){
-            this.fotograma++;
-        }
-        else{
-            this.fotograma = 0;
-        }
-    }
 
     this.dibuja = function(){
-
-        if(this.contador < this.retraso){
-            this.contador++;
-        }
-        else{
-            this.contador = 0;
-            this.cambiaFotograma();
-        }
-        ctx.drawImage(tileMap,this.fotograma*32,64,32,32,anchoF*x,altoF*y,anchoF,altoF);
-    }           
         
+        ctx.drawImage(tileMap,32,32,32,32,this.x*altoF,this.y*altoF,anchoF,altoF);
+    }
+
+          
 
 
     this.colisionEnemigo = function(x,y){
@@ -238,19 +214,20 @@ var malo = function(x,y){
 
     this.victoria = function(){
         console.log('Has ganado!')
+        window.location.replace("./index.html");
         this.x = 1;
         this.y = 1;
         this.llave = false;
         escenario[20][3] = 3;
     }
-
+/* 
     this.muerte= function(){
         console.log('Has perdido!')
         this.x = 1;
         this.y = 1;
         this.llave = false;
         escenario[20][3] = 3;
-    }
+    } */
 
 
     this.logicaObjetos = function(){
@@ -260,8 +237,16 @@ var malo = function(x,y){
             this.llave = true;
             escenario [this.y][this.x] = 2
             console.log('Has obtenido la llave!!!');
+            document.querySelector("#puntos").innerHTML=`${puntuacion}`;
+            puntuacion += 100;
         }
-
+        if(objeto == 4){
+            this.llave = true;
+            escenario [this.y][this.x] = 2
+            console.log('Has obtenido la llave!!!');
+            document.querySelector("#puntos").innerHTML=`${puntuacion}`;
+            puntuacion += 100;
+        }
         if(objeto == 1){
             if(this.llave == true)
              this.victoria();
@@ -340,10 +325,10 @@ function principal(){
     imagenAntorcha.dibuja();
     protagonista.dibuja(1,1);
 
-    for(c=0; c<enemigo.length; c++){
+    /* for(c=0; c<enemigo.length; c++){
         enemigo[c].mueve();
         enemigo[c].dibuja();
-    }
+    } */
 
 
 //console.log('funcion')
