@@ -160,7 +160,7 @@ var malo = function(x,y){
   }
 }
    //OBJETO JUGADOR 
-   var  jugador = function(x,y){
+   /* var  jugador = function(x,y){
     this.x = x;
     this.y = y;
 
@@ -176,7 +176,7 @@ var malo = function(x,y){
         else{
             this.fotograma = 0;
         }
-    }
+    } */
 
     this.dibuja = function(){
 

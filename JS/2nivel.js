@@ -323,7 +323,7 @@ function inicializa(){
 
     setInterval(function(){
         principal();
-    },100/FPS);
+    },1000/FPS);
 }
 
 
