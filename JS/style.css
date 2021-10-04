@@ -1,17 +1,33 @@
 body {
-    display: flex;
-    background:url(../img/icon-dark.png);
-      
+    display: block;
+    align-items: center;
+    background:#55BC96;
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
 
 
 
 }
 
+.titulo{
+    background: whitesmoke;
+    align-content: flex-end;
+    padding:  10px 10px 10px 50px;
+    width: 100%;
+    
+
+   
+
+}
+
 .puntuacion{
+    padding: 10px 10px 10px 10px;    
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 50px;
-    color: rgb(13, 247, 4);
+    color: rgb(245, 248, 245);
 }
+
